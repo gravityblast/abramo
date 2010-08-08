@@ -46,8 +46,10 @@ vows.describe('Store').addBatch({
   
   "should delete value" : function() {
     var s = new store.Store();
-    s.set("name", "mike");
-    s.del("name");
-    assert.deepEqual(s.data["/"].children, {});
+    s.set("people/mike", "mike");
+    s.set("people", "all");
+    s.del("people/mike");
+    assert.deepEqual(s.data["/"].children.people.children, {});
+    assert.deepEqual(s.data["/"].children.people.value, "all");
   }
 }).run();
