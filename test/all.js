@@ -1,0 +1,1 @@
+require('./store_test');
