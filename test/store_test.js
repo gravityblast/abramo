@@ -49,6 +49,7 @@ vows.describe('Store').addBatch({
     s.set("people/mike", "mike");
     s.set("people", "all");
     s.del("people/mike");
+    assert.strictEqual(s.data["/"].children.people.children.mike, undefined);
     assert.deepEqual(s.data["/"].children.people.children, {});
     assert.deepEqual(s.data["/"].children.people.value, "all");
   }
