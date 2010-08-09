@@ -52,5 +52,19 @@ vows.describe('Store').addBatch({
     assert.strictEqual(s.data["/"].children.people.children.mike, undefined);
     assert.deepEqual(s.data["/"].children.people.children, {});
     assert.deepEqual(s.data["/"].children.people.value, "all");
+  },
+  
+  "should set value for the root element" : function() {
+    var s = new store.Store();
+    s.set("/", "mike");
+    assert.equal(s.get("/").value, "mike");
+  },
+  
+  "should delete value from the root element" : function() {
+    var s = new store.Store();
+    s.set("/", "mike");
+    assert.equal(s.get("/").value, "mike");
+    s.del("/");
+    assert.strictEqual(s.get("/").value, null);
   }
 }).run();
