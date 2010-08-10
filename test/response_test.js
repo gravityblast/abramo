@@ -54,5 +54,13 @@ vows.describe('Response').addBatch({
     var r = new response.Response(fakeHttpResponse);
     r.body.value = {name: "mike"};
     assert.equal(r.createResponseBody(), '{"value":{"name":"mike"}}\n');
+  },
+  
+  "should call end on httpResponse" : function() {
+    var fakeHttpResponse = new FakeHttpResponse();
+    var r = new response.Response(fakeHttpResponse);
+    assert.ok(!fakeHttpResponse.endCalled);
+    r.end();
+    assert.ok(fakeHttpResponse.endCalled);
   }
 }).run();
