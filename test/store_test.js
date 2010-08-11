@@ -1,17 +1,17 @@
-var vows   = require('vows'),
-    assert = require('assert'),
-    store  = require('../lib/abramo/store');
+var abramo = require('../lib/abramo');
+    vows   = require('vows'),
+    assert = require('assert');    
     
 vows.describe('Store').addBatch({
   "should have the root element" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     var data = s.data;
     assert.equal(data["/"].value, null);
     assert.ok(data["/"].info.started_at instanceof Date);
   },
   
   "should save value" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     s.set("name", "mike");
     var data = s.data;
     assert.equal(data["/"].value, null);
@@ -22,7 +22,7 @@ vows.describe('Store').addBatch({
   },
   
   "should retrieve value" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     s.set("name", "mike");
     var result = s.get("name");
     assert.equal(result.value, "mike");
@@ -32,7 +32,7 @@ vows.describe('Store').addBatch({
   } ,
   
   "should save value and create parent if it doesn't exist" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     s.set("people/mike", "mike");
     var data = s.data;    
     assert.equal(data["/"].children.people.value, null);
@@ -45,7 +45,7 @@ vows.describe('Store').addBatch({
   },
   
   "should delete value" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     s.set("people/mike", "mike");
     s.set("people", "all");
     s.del("people/mike");
@@ -55,13 +55,13 @@ vows.describe('Store').addBatch({
   },
   
   "should set value for the root element" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     s.set("/", "mike");
     assert.equal(s.get("/").value, "mike");
   },
   
   "should delete value from the root element" : function() {
-    var s = new store.Store();
+    var s = new abramo.Store();
     s.set("/", "mike");
     assert.equal(s.get("/").value, "mike");
     s.del("/");
