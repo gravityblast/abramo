@@ -4,15 +4,5 @@ var sys     = require('sys'),
     abramo  = require('../lib/abramo'),
     fs      = require('fs');
 
-fs.readFile("config/abramo.json", function(err, data) {
-  var config;
-  try {
-    config = JSON.parse(data);
-  } catch(err) {
-    sys.puts("Configuration file should contain valid JSON");
-  }
-  if (config) {
-    var server = new abramo.Server(config);
-    server.listen();
-  }  
-})
+
+new abramo.Abramo(process.argv[2]);
