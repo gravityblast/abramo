@@ -4,19 +4,19 @@ var events  = require('events');
 
 var FakeStore = exports.FakeStore = function() {
   
-}
+};
 
 FakeStore.prototype.get = function(key) {
   this.getCalled = true;
   this.getReceivedWith = key;
   return this.shouldReturn;
-}
+};
 
 FakeStore.prototype.del = function(key) {
   this.delCalled = true;
   this.delReceivedWith = key;
   return this.shouldReturn;
-}
+};
 
 // FakeHttpRequest
 
