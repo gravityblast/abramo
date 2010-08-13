@@ -4,5 +4,10 @@ var sys     = require('sys'),
     abramo  = require('../lib/abramo'),
     fs      = require('fs');
 
-
+if (process.argv.length < 3) {
+  sys.puts("You must specify the abramo config file.");
+  sys.puts("Usage:");
+  sys.puts("  abramo config_file.json");
+  process.exit(1);
+}
 new abramo.Abramo(process.argv[2]);

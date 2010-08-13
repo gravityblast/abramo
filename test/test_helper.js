@@ -18,6 +18,11 @@ FakeStore.prototype.del = function(key) {
   return this.shouldReturn;
 };
 
+FakeStore.prototype.set = function(key, value) {
+  this.setCalled = true;
+  this.setReceivedWith = [key, value];
+};
+
 // FakeHttpRequest
 
 var FakeHttpRequest = exports.FakeHttpRequest = function() {
@@ -36,7 +41,7 @@ FakeHttpRequest.prototype.on = function(event, callback) {
 
 // FakeHttpResponse
 
-FakeHttpResponse = exports.FakeHttpResponse = function() {
+var FakeHttpResponse = exports.FakeHttpResponse = function() {
   this.status   = null;
   this.headers  = null;
   this.body     = "";
@@ -53,4 +58,14 @@ FakeHttpResponse.prototype.write = function(data) {
 
 FakeHttpResponse.prototype.end = function() {
   this.endCalled = true;
+};
+
+// FakeDumper
+
+var FakeDumper = exports.FakeDumper = function() {
+  
+};
+
+FakeDumper.prototype.dump = function() {
+  this.dumpCalled = true;
 };
