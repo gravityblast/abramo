@@ -74,6 +74,16 @@ vows.describe('Response').addBatch({
     assert.equal(c.command, "this/is/a / command");
   },
   
+  "should send 501 status code if command is not implemented" : function() {
+    var fakeHttpRequest = new helper.FakeHttpRequest();    
+    var fakeStore = new helper.FakeStore();
+    var fakeHttpResponse = new helper.FakeHttpResponse();
+    fakeHttpRequest.url = "/_/this/is/a/bad/command";
+    var c = new abramo.Connection({}, fakeStore, fakeHttpRequest, fakeHttpResponse);
+    fakeHttpRequest.emit("end");
+    assert.equal(fakeHttpResponse.status, 501);
+  },
+  
   "should not save value on commands path" : function() {
     var fakeHttpRequest = new helper.FakeHttpRequest();    
     var fakeStore = new helper.FakeStore();

@@ -1,16 +1,12 @@
 var abramo  = require('../lib/abramo'),
     vows    = require('vows'),
     assert  = require('assert'),
-    http    = require('http');
+    http    = require('http'),
+    helper  = require('./test_helper');
     
 vows.describe('Store').addBatch({
-  "should initialize store" : function() {
-    var s = new abramo.Server();
-    assert.ok(s.store instanceof abramo.Store);
-  },
-  
   "should initialize http server" : function() {
-    var s = new abramo.Server();
+    var s = new abramo.Server({}, new helper.FakeStore());
     assert.ok(s.httpServer instanceof http.Server);
   }
 }).run();

@@ -2,9 +2,7 @@ var events  = require('events');
 
 // Fake Store
 
-var FakeStore = exports.FakeStore = function() {
-  
-};
+var FakeStore = exports.FakeStore = function() {};
 
 FakeStore.prototype.get = function(key) {
   this.getCalled = true;
