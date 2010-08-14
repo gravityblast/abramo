@@ -61,7 +61,7 @@ The result will be:
     
 If you want to delete that document you can simply use an HTTP DELETE request:
 
-  curl http://127.0.0.1:9182/pages/first-page -X DELETE
+    curl http://127.0.0.1:9182/pages/first-page -X DELETE
   
 Only GET, PUT and DELETE methods are allowed, the HTTP POST request is not implemented.
 
